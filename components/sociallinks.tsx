@@ -33,7 +33,7 @@ const Socials : ISocial[] = [
 const SocialLinks: React.FC<{className?: string, style?: React.CSSProperties}> = ({className, style}) => {
     const links = Socials.map(social => {
         return (
-            <a key={social.url} className={className} style={style} href={social.url} target="_blank"><social.icon /></a>
+            <a key={social.url} className={className} style={style} href={social.url} target="_blank" rel="noopener noreferrer"><social.icon /></a>
         )
     })
 
