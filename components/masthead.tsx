@@ -17,7 +17,7 @@ const Masthead: React.FC<{className?: string}> = ({className}) => {
     }
 
     return (
-        <div ref={refContainer} className={`${className} min-h-screen flex flex-col items-center justify-center sticky top-0 ${progress != 0 && "-z-10"}`}
+        <div ref={refContainer} className={`${className} min-h-screen inset-0 flex flex-col items-center justify-center sticky top-0 ${progress != 0 && "-z-10"}`}
             style={{transform: `translateY(-${progress * 20}vh)`}}>
             <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
                 <source src="/assets/PurpleGrid.mp4" type="video/mp4; codecs=hvc1" />
