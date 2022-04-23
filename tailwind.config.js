@@ -8,13 +8,15 @@ module.exports = {
       auto: 'auto',
       ...theme('spacing'),
       full: '100%',
-      screen: 'var(--vh)',
+      screen: '100vh',
+      android: 'calc(var(--vh) * 100)',
     }),
     minHeight: theme => ({
       '0': '0',
       ...theme('spacing'),
       full: '100%',
-      screen: 'var(--vh)',
+      screen: '100vh',
+      android: 'calc(var(--vh) * 100)',
     }),
     extend: {
       keyframes: {
