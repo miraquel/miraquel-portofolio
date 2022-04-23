@@ -4,6 +4,18 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    height: theme => ({
+      auto: 'auto',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'var(--vh)',
+    }),
+    minHeight: theme => ({
+      '0': '0',
+      ...theme('spacing'),
+      full: '100%',
+      screen: 'var(--vh)',
+    }),
     extend: {
       keyframes: {
         'alternate-down': {

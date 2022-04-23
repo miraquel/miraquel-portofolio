@@ -3,8 +3,18 @@ import Head from 'next/head'
 import Image from 'next/image'
 import About from '../components/about'
 import Masthead from '../components/masthead'
+import { useEffect, useContext } from 'react'
+import { ScrollContext } from "../utils/scroll-observer";
 
 const Home: NextPage = () => {
+  const { scrollY } = useContext(ScrollContext)
+
+  useEffect(() => {
+      if(scrollY > 0 && document.documentElement.style.getPropertyValue('--vh') == `${window.innerHeight}px`)
+          document.documentElement.style.setProperty('--vh', `100vh`)
+      else if (scrollY <= 0)
+          document.documentElement.style.setProperty('--vh', `${window.innerHeight}px`)
+  });
   return (
     <div className='font-jakarta'>
       <Head>
