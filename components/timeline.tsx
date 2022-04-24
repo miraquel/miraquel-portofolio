@@ -92,9 +92,10 @@ const TimelineData : ITimeline[] = [
 ]
 
 const Timeline : React.FC<{className?: string}> = ({className}) => {
-    const { ref, inView } = useInView({
+    const [ ref2, inView ] = useInView({
         /* Optional options */
         threshold: 0.2,
+        triggerOnce: true
     });
 
     const TimelinePart = TimelineData.map(timeline => {
@@ -115,7 +116,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
 
     return (
         <React.Fragment>
-            <ol ref={ref} 
+            <ol ref={ref2} 
                 className={`${className} relative border-l border-gray-200 ${inView ? "opacity-100" : "opacity-0"}`}
                 style={{transitionDuration:`1s`}}>
                 {TimelinePart}

@@ -7,6 +7,7 @@ const Projects: React.FC<{ className?: string }> = ({ className }) => {
     const { ref, inView } = useInView({
         /* Optional options */
         threshold: 1,
+        triggerOnce: true
     });
 
     return (

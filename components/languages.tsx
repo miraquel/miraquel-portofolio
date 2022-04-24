@@ -67,6 +67,7 @@ const Languages : React.FC<{className?: string}> = ({className}) => {
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: 0,
+        triggerOnce: true
     });
 
     const languages = Props.map(prop => {
