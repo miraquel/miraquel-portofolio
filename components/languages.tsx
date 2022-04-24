@@ -7,7 +7,8 @@ interface IProps {
     id: number,
     img: string,
     name: string,
-    url: string
+    url: string,
+    style?: React.CSSProperties
 }
 
 const Props : IProps[] = [
@@ -45,7 +46,8 @@ const Props : IProps[] = [
         id: 6,
         img: "blazor",
         name: "Blazor",
-        url: "https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor"
+        url: "https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor",
+        style: {filter:"hue-rotate(90deg)"}
     },
     {
         id: 7,
@@ -61,7 +63,7 @@ const Props : IProps[] = [
     }
 ]
 
-const Languages : React.FC<{className?: string, style?: React.CSSProperties}> = ({className, style}) => {
+const Languages : React.FC<{className?: string}> = ({className}) => {
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: 0,
@@ -69,10 +71,10 @@ const Languages : React.FC<{className?: string, style?: React.CSSProperties}> = 
 
     const languages = Props.map(prop => {
         return (
-            <div ref={ref} key={prop.id} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl xl:text-2xl`} style={{transitionDelay:`${inView ? prop.id * 0.1 : 0}s`, transitionDuration:`${inView ? 1 : 0.2}s`}}>
+            <div ref={ref} key={prop.id} className={`${className} ${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl xl:text-2xl`} style={{transitionDelay:`${inView ? prop.id * 0.1 : 0}s`, transitionDuration:`${inView ? 1 : 0.2}s`}}>
                 <Link href={prop.url}>
                     <a target="_blank">
-                        <Image src={`/assets/languages/language_${prop.img}.svg`} alt={prop.name} width={1366} height={1555} />
+                        <Image src={`/assets/languages/language_${prop.img}.svg`} alt={prop.name} width={1366} height={1555} style={prop.style} />
                         {prop.name}
                     </a>
                 </Link>

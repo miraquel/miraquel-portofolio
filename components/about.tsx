@@ -4,7 +4,7 @@ import Languages from "./languages";
 import { useInView } from "react-intersection-observer";
 
 const About: React.FC<{className?: string}> = ({className}) => {
-    const { ref, inView, entry } = useInView({
+    const { ref, inView } = useInView({
         /* Optional options */
         threshold: 1,
     });
@@ -17,7 +17,7 @@ const About: React.FC<{className?: string}> = ({className}) => {
                         My name is <strong>Chaidir Ali Assegaf.</strong> I am a software developer skilled in some programming languages/frameworks and experienced in some of the famous enterprise system.
                     </p>
                 </div>
-                <div className="mt-8 flex flex-col items-center container md:w-1/5 md:float-left md:px-0 md:mt-0 md:p-5">
+                <div className={`mt-8 flex flex-col items-center container md:w-1/5 md:float-left md:px-0 md:mt-0 md:p-5`} style={{transitionDuration:`1s`}}>
                     <Image className="rounded-2xl" src={`/assets/chaidir-ali.png`} width={288} height={400} alt="Chaidir Ali Assegaf" />
                 </div>
             </div>
