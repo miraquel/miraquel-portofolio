@@ -23,7 +23,7 @@ const About: React.FC<{className?: string}> = ({className}) => {
                 </div>
             </div>
             <div className={`transition-all container mx-auto text-center mt-16`}>
-                <h2 ref={ref} className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"1s"}}>Programming Languages &amp; Frameworks</h2>
+                <h2 ref={ref} className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"1s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
                 <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
                     <Languages />
                 </div>

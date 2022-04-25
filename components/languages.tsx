@@ -60,6 +60,24 @@ const Props : IProps[] = [
         img: "laravel",
         name: "Laravel",
         url: "https://laravel.com/"
+    },
+    {
+        id: 9,
+        img: "d365",
+        name: "Dynamics 365",
+        url: "https://dynamics.microsoft.com/"
+    },
+    {
+        id: 10,
+        img: "sqlserver",
+        name: "SQL Server",
+        url: "https://www.microsoft.com/en-us/sql-server/"
+    },
+    {
+        id: 11,
+        img: "mysql",
+        name: "MySQL",
+        url: "https://www.mysql.com/"
     }
 ]
 
