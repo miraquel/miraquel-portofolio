@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { defaultFallbackInView, InViewHookResponse } from "react-intersection-observer";
+import { defaultFallbackInView } from "react-intersection-observer";
 import { useInView } from "react-intersection-observer";
 
 interface ITimeline {
@@ -89,21 +89,11 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
         triggerOnce: true
     });
 
-    const inputRefs : InViewHookResponse[] = []
-
-    const setRefs = () => {
-        inputRefs.push(useInView({
-            threshold: 0,
-            triggerOnce: true
-        }))
-    }
-
     const TimelinePart = TimelineData.map((timeline, index) => {
-        setRefs();
         return(
-            <li ref={inputRefs[index][0]} key={index} 
-                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inputRefs[index][1] ? "opacity-100" : "opacity-0"}`} 
-                style={{transitionDuration:`0.5s`}}>
+            <li key={index} 
+                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inView ? "opacity-100" : "opacity-0"}`} 
+                style={{transitionDelay:`${inView ? index * 0.2 : 0}s`, transitionDuration:`${inView ? 1 : 0.2}s`}}>
                 <div className="flex flex-col">
                     <div className="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white"></div>
                     <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{timeline.projectDate}</time>
@@ -117,7 +107,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
 
     return (
         <React.Fragment>
-            <ol ref={ref2}
+            <ol ref={ref2} 
                 className={`${className} relative border-l border-gray-200 ${inView ? "opacity-100" : "opacity-0"}`}
                 style={{transitionDuration:`1s`}}>
                 {TimelinePart}
