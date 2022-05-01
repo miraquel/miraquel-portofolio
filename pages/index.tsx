@@ -4,6 +4,7 @@ import Image from 'next/image'
 import About from '../components/about'
 import Masthead from '../components/masthead'
 import Projects from '../components/projects'
+import Skills from '../components/skills'
 
 const Home: NextPage = () => {
   return (
@@ -15,7 +16,10 @@ const Home: NextPage = () => {
       </Head>
       
       <Masthead />
-      <About />
+      <About className="min-h-screen px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20" />
+      <div className="min-h-20 w-full bg-gradient-to-b from-white to-[#D9AFD9]" />
+      <Skills className="min-h-screen bg-gradient-to-b from-[#D9AFD9] to-[#97D9E1] py-11" />
+      <div className="min-h-20 w-full bg-gradient-to-b from-[#97D9E1] to-white" />
       <Projects />
     </div>
   )

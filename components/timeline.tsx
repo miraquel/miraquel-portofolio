@@ -1,10 +1,9 @@
 import React from "react";
 import Image from "next/image";
-import { defaultFallbackInView } from "react-intersection-observer";
+import { defaultFallbackInView, InViewHookResponse } from "react-intersection-observer";
 import { useInView } from "react-intersection-observer";
 
 interface ITimeline {
-    id: number,
     projectDate: string,
     projectName: string,
     projectDescription: string
@@ -12,79 +11,71 @@ interface ITimeline {
 
 const TimelineData : ITimeline[] = [
     {
-        id: 1,
         projectDate: "April 2022 - Present",
         projectName: "Dynamics 365 Finance and Operations | PT. Mitra Pinasthika Mustika Rent",
         projectDescription: "AX 2012 R3 Migration to Dynamics 365 Finance and Operations (Dynamics 365 Platform | ERP | X++)"
     },
     {
-        id: 2,
         projectDate: "September 2021 - Februari 2022",
         projectName: "Price Calc | PT. Mitra Pinasthika Mustika Rent",
         projectDescription: "Car Rental Price Calculator App (Blazor WebAssembly | .Net 5 | C#)"
     },
     {
-        id: 3,
         projectDate: "April 2021 - Agustus 2021",
         projectName: "API Gateway | PT. Gunung Raja Paksi",
         projectDescription: "ASP.Net Core API Gateway with CMS (ASP.Net Core | .Net Core 2.1 | C#)"
     },
     {
-        id: 4,
         projectDate: "December 2020 - December 2020",
         projectName: "Report Transfer Order & Transactional Demand | PT. Indotruck Utama",
         projectDescription: "ERP Custom Development (Dynamics 365 Platform | ERP | AL Language)"
     },
     {
-        id: 5,
         projectDate: "January 2020 - December 2020",
         projectName: "Dynamics 365 Business Central | PT. Alliance One Indonesia",
         projectDescription: "ERP Change Request (Dynamics AX 2012 R3 | ERP | X++)"
     },
     {
-        id: 6,
         projectDate: "November 2020 - December 2020",
         projectName: "Dynamics 365 Talent | PT. Intikom Berlian Mustika",
         projectDescription: "Microsoft Talent:Attract Custom Development (Dynamics 365 Platform)"
     },
     {
-        id: 7,
         projectDate: "September 2020 - October 2020",
         projectName: "Dynamics 365 Business Central | PT. Saritama Food Processing",
         projectDescription: "ERP Custom Development (Dynamics 365 Platform | ERP | AL Language)"
     },
     {
-        id: 8,
         projectDate: "September 2020 - October 2020",
         projectName: "Dynamics 365 Finance and Operations | PT. Mitra Pinasthika Mustika Rent, HO",
         projectDescription: "Assessment Project (Dynamics 365 Platform | ERP | X++)"
     },
     {
-        id: 9,
         projectDate: "July 2020 - December 2020",
         projectName: "Dynamics 365 Human Resource | PT. Intikom Berlian Mustika",
         projectDescription: "Human Resource Custom Development (Dynamics 365 Platform)"
     },
     {
-        id: 10,
         projectDate: "February 2020 - September 2020",
         projectName: "Dynamics 365 Business Central | PT. Karanganyar Indo Auto System",
         projectDescription: "ERP Custom Development (Dynamics 365 Platform | ERP | AL Language)"
     },
     {
-        id: 11,
         projectDate: "June 2020 - July 2020",
         projectName: "DTS Migration - Phase 2 | PT. Bank Central Asia Finance",
         projectDescription: "SSIS Development (Data flow automation, SQL Server | C#)"
     },
     {
-        id: 12,
+        projectDate: "March 2020 - June 2020",
+        projectName: "DTS Migration - Phase 1 | PT. Bank Central Asia Finance",
+        projectDescription: "SSIS Development (Data flow automation, SQL Server | C#)"
+    },
+    {
         projectDate: "January 2019 - February 2019",
         projectName: "Shipping Order Report & Invoice Report | PT. Natural Java Spice",
         projectDescription: "Dynamics AX 2012 R3 Change Request (Dynamics AX 2012 R3 | ERP | X++)"
     },
     {
-        id: 13,
         projectDate: "March 2018 - December 2018",
         projectName: "Dynamics AX 2012 R3 Implementation | PT. Visionet International",
         projectDescription: "Dynamics AX 2012 R3 Development (ERP | X++)"
@@ -98,11 +89,21 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
         triggerOnce: true
     });
 
-    const TimelinePart = TimelineData.map(timeline => {
+    const inputRefs : InViewHookResponse[] = []
+
+    function setRefs() {
+        inputRefs.push(useInView({
+            threshold: 0,
+            triggerOnce: true
+        }))
+    }
+
+    const TimelinePart = TimelineData.map((timeline, index) => {
+        setRefs();
         return(
-            <li key={timeline.id} 
-                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inView ? "opacity-100" : "opacity-0"}`} 
-                style={{transitionDelay:`${inView ? timeline.id * 0.2 : 0}s`, transitionDuration:`${inView ? 1 : 0.2}s`}}>
+            <li ref={inputRefs[index][0]} key={index} 
+                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inputRefs[index][1] ? "opacity-100" : "opacity-0"}`} 
+                style={{transitionDuration:`0.5s`}}>
                 <div className="flex flex-col">
                     <div className="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white"></div>
                     <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{timeline.projectDate}</time>
@@ -116,7 +117,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
 
     return (
         <React.Fragment>
-            <ol ref={ref2} 
+            <ol ref={ref2}
                 className={`${className} relative border-l border-gray-200 ${inView ? "opacity-100" : "opacity-0"}`}
                 style={{transitionDuration:`1s`}}>
                 {TimelinePart}

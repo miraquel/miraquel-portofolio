@@ -11,7 +11,7 @@ const About: React.FC<{className?: string}> = ({className}) => {
     });
     
     return (
-        <section className={`${className} min-h-screen px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20 text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
+        <section className={`${className} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
             <div className="container mx-auto items-center transition-all">
                 <div className="md:w-4/5 md:float-right md:py-5 md:pl-10 lg:pl-12 xl:pl-14">
                     <p className="leading-tight max-w-5xl tracking-tight">
