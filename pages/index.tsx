@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import About from '../components/about'
+import Employment from '../components/employment'
+import Languages from '../components/languages'
 import Masthead from '../components/masthead'
 import Projects from '../components/projects'
 import Skills from '../components/skills'
@@ -17,9 +19,13 @@ const Home: NextPage = () => {
       
       <Masthead />
       <About className="min-h-screen px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20" />
-      <div className="min-h-20 w-full bg-gradient-to-b from-white to-[#D9AFD9]" />
+      <Languages className="flex flex-col bg-white" />
+      {/* Skills */}
+      <Image className='bg-white' src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} />
       <Skills className="min-h-screen bg-gradient-to-b from-[#D9AFD9] to-[#97D9E1] py-11" />
-      <div className="min-h-20 w-full bg-gradient-to-b from-[#97D9E1] to-white" />
+      {/* Employment */}
+      <Image className='bg-[#97D9E1]' src={`/assets/waves-3.svg`} width={960} height={200} layout={'responsive'} />
+      <Employment className='min-h-screen bg-gradient-to-b from-[#FFFB7D] to-[#85FFBD] py-11' />
       <Projects />
     </div>
   )

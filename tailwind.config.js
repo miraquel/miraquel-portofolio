@@ -81,6 +81,14 @@ module.exports = {
           '100%': {
             opacity: 100
           }
+        },
+        'pop': {
+          '0%': {
+            transform: 'scale(0) rotate(0.5turn)'
+          },
+          '100%': {
+            transform: 'scale(1) rotate(1turn)'
+          }
         }
       },
       animation: {
@@ -89,7 +97,8 @@ module.exports = {
         'fade-down': "fade-down 1s ease-in-out infinite",
         'fade-up': "fade-up 1s ease-in-out infinite",
         'fade-out': "fade-out 1s ease-in-out infinite",
-        'fade-in': "fade-in 0.5s ease-in"
+        'fade-in': "fade-in 0.5s ease-in",
+        'pop': "pop 0.4s ease-out forwards",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],

@@ -22,12 +22,6 @@ const About: React.FC<{className?: string}> = ({className}) => {
                     <Image className="rounded-2xl" src={`/assets/chaidir-ali.png`} width={288} height={400} alt="Chaidir Ali Assegaf" />
                 </div>
             </div>
-            <div className={`transition-all container mx-auto text-center mt-16`}>
-                <h2 ref={ref} className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"1s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
-                <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
-                    <Languages />
-                </div>
-            </div>
         </section>
     )
 }
