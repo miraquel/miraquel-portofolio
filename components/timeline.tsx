@@ -91,7 +91,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
 
     const inputRefs : InViewHookResponse[] = []
 
-    function setRefs() {
+    function useSetRefs() {
         inputRefs.push(useInView({
             threshold: 0,
             triggerOnce: true
@@ -99,7 +99,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
     }
 
     const TimelinePart = TimelineData.map((timeline, index) => {
-        setRefs();
+        useSetRefs();
         return(
             <li ref={inputRefs[index][0]} key={index} 
                 className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inputRefs[index][1] ? "opacity-100" : "opacity-0"}`} 

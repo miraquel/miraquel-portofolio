@@ -49,7 +49,7 @@ const Skills = ({className}: {className?: string}) => {
         for (let i = 1; i <= 5; i++) {
             stars.push(
                 <div style={{transitionDuration:`0.5s`, transitionDelay:`${((index + 1) * 0.2) + (i * 0.1)}s`}} className={`${inView1 ? "scale-100" : "scale-0"} px-2 relative w-1/5 pb-12 ${i > prop.stars ? "grayscale" : ""}`}>
-                    <Image src={"/assets/star.svg"} layout={"fill"} objectFit={"contain"} />
+                    <Image src={"/assets/star.svg"} layout={"fill"} objectFit={"contain"} alt="star" />
                 </div>
             );
         }
