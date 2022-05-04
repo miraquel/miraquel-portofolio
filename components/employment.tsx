@@ -36,7 +36,7 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
     return (
         <React.Fragment>
             <motion.div ref={dividerRef} style={{ y: transformY, z: 4 }}>
-                <Image src={`/assets/waves-3.svg`} width={960} height={200} layout={'responsive'} />
+                <Image src={`/assets/waves-3.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
             </motion.div>
             <motion.section ref={elementRef} style={{ y: transformY, z: 4 }} className={`${className}`}>
                 <div className="min-h-screen mx-5 md:mx-12 lg:mx-14 xl:mx-32">

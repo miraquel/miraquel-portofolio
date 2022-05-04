@@ -120,7 +120,7 @@ const Skills : React.FC<ISkill> = (props) => {
     return (
         <React.Fragment>
             <motion.div ref={dividerRef} style={{ y: transformY, z: 3 }}>
-                <Image src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} />
+                <Image src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
             </motion.div>
             <motion.section ref={setRefs} style={{ y: transformY, z: 3 }} className={`${props.className}`}>
                 <div className="min-h-screen mx-5 md:mx-12 lg:mx-14 xl:mx-32">
