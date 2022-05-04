@@ -82,17 +82,22 @@ const TimelineData : ITimeline[] = [
 ]
 
 const Timeline : React.FC<{className?: string}> = ({className}) => {
-    const [ ref2, inView ] = useInView({
+    const [ ref2, inView2 ] = useInView({
         /* Optional options */
         threshold: 0.2,
         triggerOnce: true
     });
 
     const TimelinePart = TimelineData.map((timeline, index) => {
+        const [ ref1, inView1 ] = useInView({
+            /* Optional options */
+            threshold: 0,
+            triggerOnce: true
+        });
         return(
-            <li key={index} 
-                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inView ? "opacity-100" : "opacity-0"}`} 
-                style={{transitionDelay:`${inView ? index * 0.2 : 0}s`, transitionDuration:`${inView ? 1 : 0.2}s`}}>
+            <li ref={ref1} key={index}
+                className={`items-start transition-all md:mb-10 mb-5 ml-4 pt-5 ${inView1 ? "opacity-100" : "opacity-0"}`}
+                style={{transitionDelay:`${inView1 ? 0.2 : 0}s`, transitionDuration:`${inView1 ? 1 : 0.2}s`}}>
                 <div className="flex flex-col">
                     <div className="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white"></div>
                     <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{timeline.projectDate}</time>
@@ -107,7 +112,7 @@ const Timeline : React.FC<{className?: string}> = ({className}) => {
     return (
         <React.Fragment>
             <ol ref={ref2} 
-                className={`${className} relative border-l border-gray-200 ${inView ? "opacity-100" : "opacity-0"}`}
+                className={`${className} relative border-l border-gray-200 ${inView2 ? "opacity-100" : "opacity-0"}`}
                 style={{transitionDuration:`1s`}}>
                 {TimelinePart}
             </ol>

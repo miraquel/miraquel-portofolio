@@ -1,16 +1,19 @@
-import React, { CSSProperties } from "react";
+import React, { useRef, useState, useCallback, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
+import { motion, MotionValue, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import { ScrollContext } from "../utils/scroll-observer";
 
-interface IProps {
+interface ILanguageList {
     img: string,
     name: string,
     url: string,
     style?: React.CSSProperties
 }
 
-const Props : IProps[] = [
+const Props : ILanguageList[] = [
     {
         name: "C#",
         img: "csharp",
@@ -73,16 +76,50 @@ const Props : IProps[] = [
     }
 ]
 
-const Languages : React.FC<{className?: string}> = ({className}) => {
-    const { ref, inView, entry } = useInView({
+interface ILanguage {
+    className?: string,
+    posY?: MotionValue<number>
+}
+
+const Languages : React.FC<ILanguage> = (props) => {
+    const [ ref, inView, entry ] = useInView({
         /* Optional options */
         threshold: 0.2,
         triggerOnce: true
     });
+    const elementRef = useRef<HTMLElement>();
+
+    // Use `useCallback` so we don't recreate the function on each render - Could result in infinite loop
+    const setRefs = useCallback(
+        (node: any) => {
+        // Ref's from useRef needs to have the node assigned to `current`
+        elementRef.current = node;
+        // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
+        ref(node);
+        },
+        [ref],
+    );
+
+    const { scrollY } = useContext(ScrollContext)
+
+    const [top, setTop] = useState(0);
+    const [height, setHeight] = useState(0);
+    const [innerHeight, setInnerHeight] = useState(0);
+
+    let transformY = useTransform(scrollY, [top, height + 200], [0, innerHeight + 200]);
+
+    useEffect(() => {
+        const element = elementRef.current;
+        if (element) {
+            setHeight(element.offsetTop + element.offsetHeight)
+            setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
+            setInnerHeight(window.innerHeight)
+        }
+    }, [elementRef.current])
 
     const languages = Props.map((prop, index) => {
         return (
-            <div ref={ref} key={index} className={`${className} ${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl xl:text-2xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
+            <div key={index} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl xl:text-2xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
                 <Link href={prop.url}>
                     <a target="_blank">
                         <Image src={`/assets/languages/language_${prop.img}.svg`} alt={prop.name} width={1366} height={1555} style={prop.style} />
@@ -94,14 +131,14 @@ const Languages : React.FC<{className?: string}> = ({className}) => {
     });
 
     return (
-        <section ref={ref} className={`${className} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
+        <motion.section ref={setRefs} style={{ y: transformY, z: 2 }} className={`${props.className} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
             <div className={`transition-all container mx-auto p-10 text-center`}>
                 <h2 className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"0.8s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
                 <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
                     {languages}
                 </div>
             </div>
-        </section>
+        </motion.section>
     )
 }
 

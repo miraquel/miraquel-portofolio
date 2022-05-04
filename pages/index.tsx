@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import { useRef, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import About from '../components/about'
@@ -7,8 +8,18 @@ import Languages from '../components/languages'
 import Masthead from '../components/masthead'
 import Projects from '../components/projects'
 import Skills from '../components/skills'
+import {
+  useViewportScroll,
+  motion,
+  useTransform,
+  useMotionValue
+} from 'framer-motion';
+import { useEffect } from 'react'
+import { useContext } from 'react'
+import { ScrollContext } from '../utils/scroll-observer'
 
 const Home: NextPage = () => {
+  // const scrollContext = useContext(ScrollContext);
   return (
     <div className='font-jakarta'>
       <Head>
@@ -17,14 +28,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Masthead />
+      <Masthead className="min-h-android -z-10 flex flex-col items-center justify-center" />
       <About className="min-h-screen px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20" />
-      <Languages className="flex flex-col bg-white" />
-      {/* Skills */}
-      <Image className='bg-white' src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} />
+      <Languages className="min-h-screen flex flex-col bg-white" />
       <Skills className="min-h-screen bg-gradient-to-b from-[#D9AFD9] to-[#97D9E1] py-11" />
-      {/* Employment */}
-      <Image className='bg-[#97D9E1]' src={`/assets/waves-3.svg`} width={960} height={200} layout={'responsive'} />
       <Employment className='min-h-screen bg-gradient-to-b from-[#FFFB7D] to-[#85FFBD] py-11' />
       <Projects />
     </div>
