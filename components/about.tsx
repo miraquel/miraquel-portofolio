@@ -32,7 +32,7 @@ const About: React.FC<IAbout> = (props) => {
             setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
             setInnerHeight(window.innerHeight)
         }
-    }, [elementRef.current])
+    }, [])
     
     return (
         <motion.section ref={elementRef} style={{ y: 0, z: 1 }} className={`${props.className} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>

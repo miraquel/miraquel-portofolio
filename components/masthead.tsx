@@ -18,7 +18,7 @@ const Masthead: React.FC<IMastHead> = (props) => {
 
     useEffect(() => {
         setInnerHeight(window.innerHeight)
-    })
+    }, [])
     
     
     return (

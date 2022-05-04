@@ -83,7 +83,7 @@ const Skills : React.FC<ISkill> = (props) => {
         }
         console.log(top, height);
         console.log(window.innerHeight)
-    }, [elementRef.current])
+    }, [])
 
     const setRefs = useCallback((node: HTMLElement) => {
         elementRef.current = node;

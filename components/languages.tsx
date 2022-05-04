@@ -115,7 +115,7 @@ const Languages : React.FC<ILanguage> = (props) => {
             setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
             setInnerHeight(window.innerHeight)
         }
-    }, [elementRef.current])
+    }, [])
 
     const languages = Props.map((prop, index) => {
         return (
