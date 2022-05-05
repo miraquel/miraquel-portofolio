@@ -81,8 +81,6 @@ const Skills : React.FC<ISkill> = (props) => {
             setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
             setInnerHeight(window.innerHeight + divider.offsetHeight)
         }
-        console.log(top, height);
-        console.log(window.innerHeight)
     }, [])
 
     const setRefs = useCallback((node: HTMLElement) => {

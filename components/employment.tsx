@@ -29,9 +29,7 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
             setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
             setInnerHeight(window.innerHeight + divider.offsetHeight)
         }
-        console.log(top, height);
-        console.log(window.innerHeight)
-    }, [elementRef.current])
+    }, [])
 
     return (
         <React.Fragment>
