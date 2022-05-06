@@ -1,14 +1,6 @@
 import React, { useRef, useEffect, useCallback, ReducerAction } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import {
-    motion,
-    motionValue,
-    MotionValue,
-    useMotionValue,
-    useTransform,
-    transform
-} from 'framer-motion';
 import { useContext } from "react";
 import { ScrollContext } from "../utils/scroll-observer";
 import { useReducer } from "react";
@@ -52,8 +44,7 @@ const Skillset : ISkillList[] = [
 ]
 
 interface ISkill {
-    className?: string,
-    posY?: MotionValue<number>
+    className?: string
 }
 
 const Skills : React.FC<ISkill> = (props) => {
@@ -67,26 +58,46 @@ const Skills : React.FC<ISkill> = (props) => {
     const elementRef = useRef<HTMLElement>();
     const dividerRef = useRef<HTMLDivElement>(null);
 
-    const [top, setTop] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [innerHeight, setInnerHeight] = useState(0);
-
-    let transformY = useTransform(scrollY, [top, height], [0, innerHeight]);
-
-    useEffect(() => {
-        const element = elementRef.current;
-        const divider = dividerRef.current;
-        if (element && divider) {
-            setHeight(element.offsetTop + element.offsetHeight + divider.offsetHeight)
-            setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
-            setInnerHeight(window.innerHeight + divider.offsetHeight)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const element = elementRef.current;
+    //     const divider = dividerRef.current;
+    //     if (element && divider) {
+    //         setHeight(element.offsetTop + element.offsetHeight + divider.offsetHeight)
+    //         setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
+    //         setInnerHeight(window.innerHeight + divider.offsetHeight)
+    //     }
+    // }, [])
 
     const setRefs = useCallback((node: HTMLElement) => {
         elementRef.current = node;
         ref1(node);
     }, [ref1]);
+
+    const { current: elContainer } = elementRef
+
+    const [top, setTop] = useState(0);
+    const [bottom, setBottom] = useState(0);
+    const [innerTop, setInnerTop] = useState(0);
+    const [init, setInit] = useState(false);
+    let freeze = false
+    
+    if (elContainer) {
+        if (init === false) {
+            setBottom(elContainer.offsetTop + elContainer.offsetHeight);
+            setTop((elContainer.offsetTop + elContainer.offsetHeight) - window.innerHeight)
+            setInnerTop((elContainer.offsetHeight - window.innerHeight) * -1)
+
+            setInit(true)
+        }
+
+        if (scrollY >= top && scrollY <= bottom + 200) {
+            freeze = true
+        }
+        else
+        {
+            freeze = false
+        }
+    }
 
     const skillList = Skillset.map((prop, index) => {
         const stars = [];
@@ -117,10 +128,10 @@ const Skills : React.FC<ISkill> = (props) => {
 
     return (
         <React.Fragment>
-            <motion.div ref={dividerRef} style={{ y: transformY, z: 3 }}>
+            <div ref={dividerRef}>
                 <Image src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
-            </motion.div>
-            <motion.section ref={setRefs} style={{ y: transformY, z: 3 }} className={`${props.className}`}>
+            </div>
+            <section ref={setRefs} className={`${props.className} ${freeze ? "sticky -z-10" : ""}`} style={{ top: innerTop }}>
                 <div className="min-h-screen mx-5 md:mx-12 lg:mx-14 xl:mx-32">
                     <div className="transition-all bg-white py-8 md:py-12 lg:py-16 xl:py-20 rounded-xl" style={{transitionDuration:`.8s`, opacity:inView1 ? 1 : 0}}>
                         <h2 className="text-center tracking-widest text-2xl md:text-3xl lg:text-4xl">
@@ -131,7 +142,7 @@ const Skills : React.FC<ISkill> = (props) => {
                         </div>
                     </div>
                 </div>
-            </motion.section>
+            </section>
         </React.Fragment>
     )
 }

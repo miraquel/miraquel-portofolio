@@ -3,26 +3,34 @@ import Image from "next/image";
 import NamePlate from "./nameplate";
 import { FaChevronUp } from "react-icons/fa";
 import { ScrollContext } from "../utils/scroll-observer";
-import { motion, MotionValue, useMotionValue, useTransform } from "framer-motion";
 
 interface IMastHead {
     className?: string
 }
 
 const Masthead: React.FC<IMastHead> = (props) => {
-    const { scrollY } = useContext(ScrollContext);
-    const ref = useRef<HTMLDivElement>(null);
+    const refContainer = useRef<HTMLDivElement>(null);
+    const { scrollY } = useContext(ScrollContext)
     const [innerHeight, setInnerHeight] = useState(0);
     
-    let transformY = useTransform(scrollY, [0, innerHeight], [0, innerHeight * 0.75]);
+    let progress = 0
+    let freeze = false
 
-    useEffect(() => {
-        setInnerHeight(window.innerHeight)
-    }, [])
+    const { current: elContainer } = refContainer
     
+    if(elContainer) {
+        progress = Math.min(1, scrollY / elContainer.clientHeight)
+        if (progress < 1) {
+            freeze = true
+        }
+        else {
+            freeze = false
+        }
+    }
     
     return (
-        <motion.div ref={ref} style={{ y: transformY, zIndex: -10 }} className={`${props.className}`}>
+        <div ref={refContainer} className={`${props.className} min-h-android flex flex-col items-center justify-center ${freeze ? "sticky top-0" : ""}`}
+            style={{transform: `translateY(-${progress * 20}vh)`}}>
             <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
                 <source src="/assets/PurpleGrid.mp4" type="video/mp4; codecs=hvc1" />
                 <source src="/assets/PurpleGrid.webm" type="video/webm; codecs=vp9" />
@@ -44,7 +52,7 @@ const Masthead: React.FC<IMastHead> = (props) => {
                     {/* <FaChevronUp className="animate-fade-up -mt-12" style={{animationDelay:"3s"}}  /> */}
                 </div>
             </div>
-        </motion.div>
+        </div>
     )
 }
 

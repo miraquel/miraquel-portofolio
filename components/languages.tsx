@@ -2,7 +2,6 @@ import React, { useRef, useState, useCallback, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
-import { motion, MotionValue, useTransform } from "framer-motion";
 import { useEffect } from "react";
 import { ScrollContext } from "../utils/scroll-observer";
 
@@ -77,8 +76,7 @@ const Props : ILanguageList[] = [
 ]
 
 interface ILanguage {
-    className?: string,
-    posY?: MotionValue<number>
+    className?: string
 }
 
 const Languages : React.FC<ILanguage> = (props) => {
@@ -93,6 +91,7 @@ const Languages : React.FC<ILanguage> = (props) => {
     const setRefs = useCallback(
         (node: any) => {
         // Ref's from useRef needs to have the node assigned to `current`
+        
         elementRef.current = node;
         // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
         ref(node);
@@ -102,20 +101,31 @@ const Languages : React.FC<ILanguage> = (props) => {
 
     const { scrollY } = useContext(ScrollContext)
 
+    const { current: elContainer } = elementRef
+
     const [top, setTop] = useState(0);
-    const [height, setHeight] = useState(0);
-    const [innerHeight, setInnerHeight] = useState(0);
+    const [bottom, setBottom] = useState(0);
+    const [innerTop, setInnerTop] = useState(0);
+    const [init, setInit] = useState(false);
+    let freeze = false
+    
+    if (elContainer) {
+        if (init === false) {
+            setBottom(elContainer.offsetTop + elContainer.offsetHeight);
+            setTop((elContainer.offsetTop + elContainer.offsetHeight) - window.innerHeight)
+            setInnerTop((elContainer.offsetHeight - window.innerHeight) * -1)
 
-    let transformY = useTransform(scrollY, [top, height + 200], [0, innerHeight + 200]);
-
-    useEffect(() => {
-        const element = elementRef.current;
-        if (element) {
-            setHeight(element.offsetTop + element.offsetHeight)
-            setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
-            setInnerHeight(window.innerHeight)
+            setInit(true)
         }
-    }, [])
+
+        if (scrollY >= top && scrollY <= bottom + 200) {
+            freeze = true
+        }
+        else
+        {
+            freeze = false
+        }
+    }
 
     const languages = Props.map((prop, index) => {
         return (
@@ -131,14 +141,16 @@ const Languages : React.FC<ILanguage> = (props) => {
     });
 
     return (
-        <motion.section ref={setRefs} style={{ y: transformY, z: 2 }} className={`${props.className} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
-            <div className={`transition-all container mx-auto p-10 text-center`}>
-                <h2 className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"0.8s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
-                <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
-                    {languages}
+        <React.Fragment>
+            <section ref={setRefs} style={{ top: innerTop }} className={`${props.className} ${freeze ? "sticky -z-10" : ""} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
+                <div className={`transition-all container mx-auto p-10 text-center`}>
+                    <h2 className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"0.8s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
+                    <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
+                        {languages}
+                    </div>
                 </div>
-            </div>
-        </motion.section>
+            </section>
+        </React.Fragment>
     )
 }
 
