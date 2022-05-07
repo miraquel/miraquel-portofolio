@@ -54,6 +54,11 @@ const Skills : React.FC<ISkill> = (props) => {
         triggerOnce: true
     });
 
+    const [ref2, inView2, entry2] = useInView({
+        /* Optional options */
+        threshold: 0
+    });
+
     const { scrollY } = useContext(ScrollContext)
     const elementRef = useRef<HTMLElement>();
     const dividerRef = useRef<HTMLDivElement>(null);
@@ -71,31 +76,27 @@ const Skills : React.FC<ISkill> = (props) => {
     const setRefs = useCallback((node: HTMLElement) => {
         elementRef.current = node;
         ref1(node);
-    }, [ref1]);
+        ref2(node);
+    }, [ref1, ref2]);
 
     const { current: elContainer } = elementRef
 
-    const [top, setTop] = useState(0);
-    const [bottom, setBottom] = useState(0);
     const [innerTop, setInnerTop] = useState(0);
+    const [scrollHeight, setScrollHeight] = useState(0);
+    const [offsetTop, setOffsetTop] = useState(0);
     const [init, setInit] = useState(false);
-    let freeze = false
+    let progress = 0
     
     if (elContainer) {
         if (init === false) {
-            setBottom(elContainer.offsetTop + elContainer.offsetHeight);
-            setTop((elContainer.offsetTop + elContainer.offsetHeight) - window.innerHeight)
-            setInnerTop((elContainer.offsetHeight - window.innerHeight) * -1)
-
+            setInnerTop((elContainer.scrollHeight - window.visualViewport.height) * -1)
+            setScrollHeight(elContainer.scrollHeight)
+            setOffsetTop(elContainer.offsetTop)
             setInit(true)
         }
 
-        if (scrollY >= top && scrollY <= bottom + 200) {
-            freeze = true
-        }
-        else
-        {
-            freeze = false
+        if (inView2) {
+            progress = Math.min(1.2, Math.max(0, (scrollY - offsetTop - 200) / scrollHeight))
         }
     }
 
@@ -131,7 +132,7 @@ const Skills : React.FC<ISkill> = (props) => {
             <div ref={dividerRef}>
                 <Image src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
             </div>
-            <section ref={setRefs} className={`${props.className} ${freeze ? "sticky -z-10" : ""}`} style={{ top: innerTop }}>
+            <section ref={setRefs} className={`${props.className} ${progress >= 0 && progress < 1.2 ? "sticky -z-10" : ""}`} style={{ top: innerTop }}>
                 <div className="min-h-screen mx-5 md:mx-12 lg:mx-14 xl:mx-32">
                     <div className="transition-all bg-white py-8 md:py-12 lg:py-16 xl:py-20 rounded-xl" style={{transitionDuration:`.8s`, opacity:inView1 ? 1 : 0}}>
                         <h2 className="text-center tracking-widest text-2xl md:text-3xl lg:text-4xl">

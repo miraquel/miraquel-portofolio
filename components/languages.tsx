@@ -85,6 +85,10 @@ const Languages : React.FC<ILanguage> = (props) => {
         threshold: 0.2,
         triggerOnce: true
     });
+    const [ ref2, inView2, entry2 ] = useInView({
+        /* Optional options */
+        threshold: 0
+    });
     const elementRef = useRef<HTMLElement>();
 
     // Use `useCallback` so we don't recreate the function on each render - Could result in infinite loop
@@ -95,41 +99,38 @@ const Languages : React.FC<ILanguage> = (props) => {
         elementRef.current = node;
         // Callback refs, like the one from `useInView`, is a function that takes the node as an argument
         ref(node);
+        ref2(node);
         },
-        [ref],
+        [ref, ref2],
     );
 
     const { scrollY } = useContext(ScrollContext)
 
     const { current: elContainer } = elementRef
 
-    const [top, setTop] = useState(0);
-    const [bottom, setBottom] = useState(0);
     const [innerTop, setInnerTop] = useState(0);
+    const [scrollHeight, setScrollHeight] = useState(0);
+    const [offsetTop, setOffsetTop] = useState(0);
     const [init, setInit] = useState(false);
-    let freeze = false
+    let progress = 0
     
     if (elContainer) {
         if (init === false) {
-            setBottom(elContainer.offsetTop + elContainer.offsetHeight);
-            setTop((elContainer.offsetTop + elContainer.offsetHeight) - window.innerHeight)
-            setInnerTop((elContainer.offsetHeight - window.innerHeight) * -1)
-
+            setInnerTop((elContainer.scrollHeight - window.visualViewport.height) * -1)
+            setScrollHeight(elContainer.scrollHeight)
+            setOffsetTop(elContainer.offsetTop)
             setInit(true)
         }
 
-        if (scrollY >= top && scrollY <= bottom + 200) {
-            freeze = true
-        }
-        else
-        {
-            freeze = false
+        if (inView2) {
+            progress = Math.min(1.2, Math.max(0, (scrollY - offsetTop) / scrollHeight))
+            // console.log("scrollY: %d, scrollTop: %d, scrollHeight: %d, innerTop: %d, progress: %d", scrollY, offsetTop, scrollHeight, innerTop, progress)
         }
     }
 
     const languages = Props.map((prop, index) => {
         return (
-            <div key={index} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl xl:text-2xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
+            <div key={index} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
                 <Link href={prop.url}>
                     <a target="_blank">
                         <Image src={`/assets/languages/language_${prop.img}.svg`} alt={prop.name} width={1366} height={1555} style={prop.style} />
@@ -142,10 +143,10 @@ const Languages : React.FC<ILanguage> = (props) => {
 
     return (
         <React.Fragment>
-            <section ref={setRefs} style={{ top: innerTop }} className={`${props.className} ${freeze ? "sticky -z-10" : ""} text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
-                <div className={`transition-all container mx-auto p-10 text-center`}>
+            <section ref={setRefs} id={"test"} style={{ top: innerTop }} className={`${props.className} ${progress > 0 && progress < 1.25 ? "sticky -z-10" : ""} transition-all text-xl md:text-2xl lg:text-3xl xl:text-4xl`}>
+                <div className={`transition-all container mx-auto px-16 lg:px-20 lg:py-20 text-center`}>
                     <h2 className={`${inView ? "opacity-100" : "opacity-0"} transition-all`} style={{transitionDuration:"0.8s"}}>Programming Languages, Frameworks &amp; Stacks</h2>
-                    <div className="mt-10 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-20">
+                    <div className="mt-10 lg:mt-16 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 lg:gap-x-24 lg:gap-y-12">
                         {languages}
                     </div>
                 </div>

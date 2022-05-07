@@ -23,8 +23,8 @@ const Home: NextPage = () => {
       </Head>
 
       <Masthead className="min-h-android -z-10 flex flex-col items-center justify-center" />
-      <About className="min-h-screen px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20" />
-      <Languages className="h-min-screen flex flex-col bg-white" />
+      <About className="px-11 md:px-12 lg:px-14 xl:px-32 flex flex-col bg-white py-11 md:py-12 lg:py-14 xl:py-20" />
+      <Languages className="min-h-screen flex flex-col bg-white" />
       <Skills className="min-h-screen bg-gradient-to-b from-[#D9AFD9] to-[#97D9E1] py-11" />
       <Employment className='min-h-screen bg-gradient-to-b from-[#FFFB7D] to-[#85FFBD] py-11' />
       <Projects />

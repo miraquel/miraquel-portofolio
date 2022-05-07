@@ -18,15 +18,15 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
     const [height, setHeight] = useState(0);
     const [innerHeight, setInnerHeight] = useState(0);
 
-    useEffect(() => {
-        const element = elementRef.current;
-        const divider = dividerRef.current;
-        if (element && divider) {
-            setHeight(element.offsetTop + element.offsetHeight + divider.offsetHeight)
-            setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
-            setInnerHeight(window.innerHeight + divider.offsetHeight)
-        }
-    }, [])
+    // useEffect(() => {
+    //     const element = elementRef.current;
+    //     const divider = dividerRef.current;
+    //     if (element && divider) {
+    //         setHeight(element.offsetTop + element.offsetHeight + divider.offsetHeight)
+    //         setTop((element.offsetTop + element.offsetHeight) - window.innerHeight)
+    //         setInnerHeight(window.innerHeight + divider.offsetHeight)
+    //     }
+    // }, [])
 
     return (
         <React.Fragment>

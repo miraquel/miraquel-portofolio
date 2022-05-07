@@ -20,16 +20,16 @@ const Masthead: React.FC<IMastHead> = (props) => {
     
     if(elContainer) {
         progress = Math.min(1, scrollY / elContainer.clientHeight)
-        if (progress < 1) {
-            freeze = true
-        }
-        else {
-            freeze = false
-        }
+        // if (progress < 1) {
+        //     freeze = true
+        // }
+        // else {
+        //     freeze = false
+        // }
     }
     
     return (
-        <div ref={refContainer} className={`${props.className} min-h-android flex flex-col items-center justify-center ${freeze ? "sticky top-0" : ""}`}
+        <div ref={refContainer} className={`${props.className} min-h-android flex flex-col items-center justify-center sticky top-0 ${progress < 1 ? "sticky top-0" : ""}`}
             style={{transform: `translateY(-${progress * 20}vh)`}}>
             <video autoPlay loop muted playsInline className="absolute w-full h-full object-cover">
                 <source src="/assets/PurpleGrid.mp4" type="video/mp4; codecs=hvc1" />
