@@ -117,8 +117,7 @@ export const Skills : React.FC<ISkill> = (props) => {
                         objectFit={"contain"}
                         alt="star"
                         style={{
-                            maxWidth: "100%",
-                            height: "auto"
+                            maxWidth: "100%"
                         }} />
                 </div>
             );
@@ -145,8 +144,7 @@ export const Skills : React.FC<ISkill> = (props) => {
                     layout={'responsive'}
                     alt={"waves"}
                     style={{
-                        maxWidth: "100%",
-                        height: "auto"
+                        maxWidth: "100%"
                     }} />
             </div>
             <section ref={setRefs} className={`${props.className} ${progress >= 0 && progress < 1.2 ? "sticky -z-10" : ""}`} style={{ top: innerTop }}>

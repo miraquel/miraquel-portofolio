@@ -131,19 +131,18 @@ export const Languages : React.FC<ILanguage> = (props) => {
     const languages = Props.map((prop, index) => {
         return (
             <div key={index} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
-                <Link href={prop.url}>
-                    <a target="_blank">
-                        <Image
-                            src={`/assets/languages/language_${prop.img}.svg`}
-                            alt={prop.name}
-                            width={1366}
-                            height={1555}
-                            style={{
-                                maxWidth: "100%",
-                                height: "auto"
-                            }} />
-                        {prop.name}
-                    </a>
+                <Link href={prop.url} target="_blank">
+
+                    <Image
+                        src={`/assets/languages/language_${prop.img}.svg`}
+                        alt={prop.name}
+                        width={1366}
+                        height={1555}
+                        style={{
+                            maxWidth: "100%",
+                        }} />
+                    {prop.name}
+
                 </Link>
             </div>
         );

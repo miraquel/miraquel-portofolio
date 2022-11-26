@@ -42,8 +42,7 @@ export const About: React.FC<IAbout> = (props) => {
                             height={400}
                             alt="Chaidir Ali Assegaf"
                             style={{
-                                maxWidth: "100%",
-                                height: "auto"
+                                maxWidth: "100%"
                             }} />
                     </div>
                     <div className="md:w-4/5 md:pl-10 lg:pl-12 xl:pl-14">

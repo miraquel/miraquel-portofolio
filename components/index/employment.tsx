@@ -69,8 +69,7 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                                 objectFit={"cover"}
                                 alt="star"
                                 style={{
-                                    maxWidth: "100%",
-                                    height: "auto"
+                                    maxWidth: "100%"
                                 }} />
                         </div>
                     </div>
@@ -89,8 +88,7 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                                     objectPosition={"right"}
                                     alt="star"
                                     style={{
-                                        maxWidth: "100%",
-                                        height: "auto"
+                                        maxWidth: "100%"
                                     }} />
                             </div>
                         </div>
@@ -133,8 +131,7 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                     layout={'responsive'}
                     alt={"waves"}
                     style={{
-                        maxWidth: "100%",
-                        height: "auto"
+                        maxWidth: "100%"
                     }} />
             </div>
             <section ref={elementRef} className={`${className} px-3`}>
