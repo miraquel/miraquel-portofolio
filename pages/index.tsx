@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useRef, useState } from 'react'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import { Masthead, About, Languages, Skills, Employment, Projects } from '../components/index/index'
 import { useEffect } from 'react'
 import { useContext } from 'react'

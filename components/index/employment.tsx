@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useInView } from "react-intersection-observer";
 import { ScrollContext } from "../../utils/scroll-observer";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";

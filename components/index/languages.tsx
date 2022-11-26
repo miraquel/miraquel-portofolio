@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback, useContext } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
