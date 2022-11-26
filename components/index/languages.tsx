@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
-import { ScrollContext } from "../utils/scroll-observer";
+import { ScrollContext } from "../../utils/scroll-observer";
 
 interface ILanguageList {
     img: string,
@@ -79,7 +79,7 @@ interface ILanguage {
     className?: string
 }
 
-const Languages : React.FC<ILanguage> = (props) => {
+export const Languages : React.FC<ILanguage> = (props) => {
     const [ ref, inView, entry ] = useInView({
         /* Optional options */
         threshold: 0.2,
@@ -154,5 +154,3 @@ const Languages : React.FC<ILanguage> = (props) => {
         </React.Fragment>
     )
 }
-
-export default Languages

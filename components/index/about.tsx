@@ -1,13 +1,13 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ScrollContext } from "../utils/scroll-observer";
+import { ScrollContext } from "../../utils/scroll-observer";
 
 interface IAbout {
     className?: string
 }
 
-const About: React.FC<IAbout> = (props) => {
+export const About: React.FC<IAbout> = (props) => {
     // const { ref, inView } = useInView({
     //     /* Optional options */
     //     threshold: 1,
@@ -47,5 +47,3 @@ const About: React.FC<IAbout> = (props) => {
         </React.Fragment>
     )
 }
-
-export default About

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, ReducerAction } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useContext } from "react";
-import { ScrollContext } from "../utils/scroll-observer";
+import { ScrollContext } from "../../utils/scroll-observer";
 import { useReducer } from "react";
 import { useState } from "react";
 import { useLayoutEffect } from "react";
@@ -47,7 +47,7 @@ interface ISkill {
     className?: string
 }
 
-const Skills : React.FC<ISkill> = (props) => {
+export const Skills : React.FC<ISkill> = (props) => {
     const [ref1, inView1, entry1] = useInView({
         /* Optional options */
         threshold: .5,
@@ -147,5 +147,3 @@ const Skills : React.FC<ISkill> = (props) => {
         </React.Fragment>
     )
 }
-
-export default Skills;

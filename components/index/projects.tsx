@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import Timeline from "./timeline";
 
-const Projects: React.FC<{ className?: string }> = ({ className }) => {
+export const Projects: React.FC<{ className?: string }> = ({ className }) => {
     const { ref, inView } = useInView({
         /* Optional options */
         threshold: 1,
@@ -21,5 +21,3 @@ const Projects: React.FC<{ className?: string }> = ({ className }) => {
         </React.Fragment>
     )
 }
-
-export default Projects

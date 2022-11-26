@@ -1,0 +1,6 @@
+export * from './masthead'
+export * from './about'
+export * from './languages'
+export * from './skills'
+export * from './employment'
+export * from './projects'

@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ScrollContext } from "../utils/scroll-observer";
+import { ScrollContext } from "../../utils/scroll-observer";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-const Employment: React.FC<{className?: string}> = ({className}) => {
+export const Employment: React.FC<{className?: string}> = ({className}) => {
     const [ref1, inView1, entry1] = useInView({
         /* Optional options */
         threshold: .5,
@@ -136,5 +136,3 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
         </React.Fragment>
     )
 }
-
-export default Employment;
