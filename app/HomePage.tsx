@@ -1,9 +1,12 @@
 'use client';
 
+import { useEffect } from 'react';
 import { Masthead, About, Languages, Skills, Employment, Projects } from '../components/index/index'
 
 export default function HomePage() {
-  // const scrollContext = useContext(ScrollContext);
+  useEffect(() => {
+    document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
+  });
   return (
     <div className='font-jakarta'>
       <Masthead className="min-h-android -z-10 flex flex-col items-center justify-center" />
