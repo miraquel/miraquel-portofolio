@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ScrollContext } from "../../utils/scroll-observer";
+import { ScrollContext } from "../../app/ScrollProvider";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 

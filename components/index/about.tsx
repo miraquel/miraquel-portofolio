@@ -1,7 +1,7 @@
 import React, { useRef, useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
-import { ScrollContext } from "../../utils/scroll-observer";
+import { ScrollContext } from "../../app/ScrollProvider";
 
 interface IAbout {
     className?: string

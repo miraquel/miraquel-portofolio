@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useCallback, ReducerAction } from "react";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useContext } from "react";
-import { ScrollContext } from "../../utils/scroll-observer";
+import { ScrollContext } from "../../app/ScrollProvider";
 import { useReducer } from "react";
 import { useState } from "react";
 import { useLayoutEffect } from "react";
@@ -113,11 +113,13 @@ export const Skills : React.FC<ISkill> = (props) => {
                     className={`${inView1 ? "animate-pop" : ""} px-2 relative w-1/5 pb-12 ${i > prop.stars ? "grayscale" : ""}`}>
                     <Image
                         src={"/assets/star.svg"}
-                        layout={"fill"}
-                        objectFit={"contain"}
+                        //layout={"fill"}
+                        fill
+                        //objectFit={"contain"}
                         alt="star"
                         style={{
-                            maxWidth: "100%"
+                            maxWidth: "100%",
+                            objectFit: "contain"
                         }} />
                 </div>
             );
