@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import Timeline from "./timeline";
 

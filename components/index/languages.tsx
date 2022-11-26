@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback, useContext } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
@@ -133,12 +133,20 @@ export const Languages : React.FC<ILanguage> = (props) => {
             <div key={index} className={`${inView ? "opacity-100" : "opacity-0"} transition-all text-sm md:text-lg lg:text-xl`} style={{transitionDelay:`${((index + 1) * 0.1) + 0.3}s`, transitionDuration:`1s`}}>
                 <Link href={prop.url}>
                     <a target="_blank">
-                        <Image src={`/assets/languages/language_${prop.img}.svg`} alt={prop.name} width={1366} height={1555} style={prop.style} />
+                        <Image
+                            src={`/assets/languages/language_${prop.img}.svg`}
+                            alt={prop.name}
+                            width={1366}
+                            height={1555}
+                            style={{
+                                maxWidth: "100%",
+                                height: "auto"
+                            }} />
                         {prop.name}
                     </a>
                 </Link>
             </div>
-        )
+        );
     });
 
     return (

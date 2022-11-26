@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { ScrollContext } from "../../utils/scroll-observer";
 import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
@@ -62,7 +62,16 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                 <ParallaxLayer className="-z-[1]" offset={props.index} speed={0.3}>
                     <div className="absolute left-0 top-20 w-1/2 h-full">
                         <div className="relative w-full h-full">
-                            <Image className="saturate-0 brightness-125 opacity-75" src={`/assets/curl.svg`} layout={"fill"} objectFit={"cover"} alt="star" />
+                            <Image
+                                className="saturate-0 brightness-125 opacity-75"
+                                src={`/assets/curl.svg`}
+                                layout={"fill"}
+                                objectFit={"cover"}
+                                alt="star"
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto"
+                                }} />
                         </div>
                     </div>
                 </ParallaxLayer>
@@ -72,7 +81,17 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                     <ParallaxLayer className="-z-[1]" offset={props.index} speed={0.6}>
                         <div className="absolute right-0 lg:right-10 md:p-10 h-full w-full px-16 md:w-2/3">
                             <div className="relative w-full h-full">
-                                <Image className="drop-shadow-lg" src={`/assets/employment/${props.history.image}`} layout={"fill"} objectFit={"contain"} objectPosition={"right"} alt="star" />
+                                <Image
+                                    className="drop-shadow-lg"
+                                    src={`/assets/employment/${props.history.image}`}
+                                    layout={"fill"}
+                                    objectFit={"contain"}
+                                    objectPosition={"right"}
+                                    alt="star"
+                                    style={{
+                                        maxWidth: "100%",
+                                        height: "auto"
+                                    }} />
                             </div>
                         </div>
                     </ParallaxLayer>
@@ -107,7 +126,16 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
     return (
         <React.Fragment>
             <div ref={dividerRef}>
-                <Image src={`/assets/waves-3.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
+                <Image
+                    src={`/assets/waves-3.svg`}
+                    width={960}
+                    height={200}
+                    layout={'responsive'}
+                    alt={"waves"}
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                    }} />
             </div>
             <section ref={elementRef} className={`${className} px-3`}>
                 <div className="flex flex-col min-w-full my-auto">
@@ -134,5 +162,5 @@ export const Employment: React.FC<{className?: string}> = ({className}) => {
                 </div>
             </section>
         </React.Fragment>
-    )
+    );
 }

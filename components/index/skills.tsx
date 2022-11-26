@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback, ReducerAction } from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useContext } from "react";
 import { ScrollContext } from "../../utils/scroll-observer";
@@ -111,7 +111,15 @@ export const Skills : React.FC<ISkill> = (props) => {
                         transform: `scale(0)`
                     }} 
                     className={`${inView1 ? "animate-pop" : ""} px-2 relative w-1/5 pb-12 ${i > prop.stars ? "grayscale" : ""}`}>
-                    <Image src={"/assets/star.svg"} layout={"fill"} objectFit={"contain"} alt="star" />
+                    <Image
+                        src={"/assets/star.svg"}
+                        layout={"fill"}
+                        objectFit={"contain"}
+                        alt="star"
+                        style={{
+                            maxWidth: "100%",
+                            height: "auto"
+                        }} />
                 </div>
             );
         }
@@ -130,7 +138,16 @@ export const Skills : React.FC<ISkill> = (props) => {
     return (
         <React.Fragment>
             <div ref={dividerRef}>
-                <Image src={`/assets/waves-2.svg`} width={960} height={200} layout={'responsive'} alt={"waves"} />
+                <Image
+                    src={`/assets/waves-2.svg`}
+                    width={960}
+                    height={200}
+                    layout={'responsive'}
+                    alt={"waves"}
+                    style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                    }} />
             </div>
             <section ref={setRefs} className={`${props.className} ${progress >= 0 && progress < 1.2 ? "sticky -z-10" : ""}`} style={{ top: innerTop }}>
                 <div className="min-h-screen mx-5 md:mx-12 lg:mx-14 xl:mx-32">
@@ -145,5 +162,5 @@ export const Skills : React.FC<ISkill> = (props) => {
                 </div>
             </section>
         </React.Fragment>
-    )
+    );
 }
