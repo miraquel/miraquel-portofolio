@@ -10,7 +10,12 @@ interface ITimeline {
 
 const TimelineData : ITimeline[] = [
     {
-        projectDate: "April 2022 - Present",
+        projectDate: "June 2023 - July 2023",
+        projectName: "Dynamics AX 2012 R3 | PT. Mega Akses Persada (Fiberstar)",
+        projectDescription: "Data forensics (Dynamics AX 2012 R3 | ERP | X++)"
+    },
+    {
+        projectDate: "April 2022 - April 2023",
         projectName: "Dynamics 365 Finance and Operations | PT. Mitra Pinasthika Mustika Rent",
         projectDescription: "AX 2012 R3 Migration to Dynamics 365 Finance and Operations (Dynamics 365 Platform | ERP | X++)"
     },
