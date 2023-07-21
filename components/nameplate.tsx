@@ -11,7 +11,7 @@ const NamePlate: React.FC<{className?: string}> = ({className}) => {
                 <span>Software Developer</span>
             </h2>
             <div className="px-5 text-3xl flex">
-                <SocialLinks />
+                
             </div>
         </div>
     )
