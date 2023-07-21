@@ -34,8 +34,8 @@ const Masthead: React.FC<IMastHead> = (props) => {
                     
                 </div>
                 <div className="group -mt-24">
-                    <NamePlate className="absolute blur-2xl bg-gradient-to-r from-yellow-500 to-purple-500 opacity-0 group-hover:opacity-75 group-hover:drop-shadow-[0_10px_10px_rgba(0,0,0,0.4)]" />
-                    {/* <NamePlate className="relative" /> */}
+                    {/* <NamePlate className="absolute blur-2xl bg-gradient-to-r from-yellow-500 to-purple-500 opacity-0 group-hover:opacity-75 group-hover:drop-shadow-[0_10px_10px_rgba(0,0,0,0.4)]" /> */}
+                    <NamePlate className="relative" />
                 </div>
                 <div className="inline-block align-text-bottom items-end text-white text-4xl pt-20">
                     <FaChevronUp className="animate-fade-out -my-3" style={{animationDelay:"0.6s"}}  />
