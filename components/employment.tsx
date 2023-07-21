@@ -40,7 +40,7 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
         },
         {
             name: "PT. Intikom Berlian Mustika",
-            date: "February 2019 - Current",
+            date: "February 2019 - July 2023",
             position: "Software Developer",
             jobDescription: "Microsoft Dynamics Ecosystem Developer, responsible for Developing a solution based from business requirements that depends on multiple Microsoft Dynamics Products, including PowerApps, Power Automate, Dynamics Finance and Operations, Dynamics Business Central, Azure DevOps, Microsoft LCS",
             image: "intikom.png"
