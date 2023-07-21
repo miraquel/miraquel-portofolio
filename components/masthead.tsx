@@ -3,6 +3,7 @@ import Image from "next/image";
 import NamePlate from "./nameplate";
 import { FaChevronUp } from "react-icons/fa";
 import { ScrollContext } from "../utils/scroll-observer";
+import SocialLinks from "./sociallinks";
 
 interface IMastHead {
     className?: string
