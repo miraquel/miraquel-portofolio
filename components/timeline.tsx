@@ -10,6 +10,16 @@ interface ITimeline {
 
 const TimelineData : ITimeline[] = [
     {
+        projectDate: "February 2024 - July 2024",
+        projectName: "Sparepart Management System v2 | PT. Gandum Mas Kencana",
+        projectDescription: "Sparepart Management integration to AX 2012 R2 using ASP.NET Web API and Flutter (Dynamics AX 2012 R2 | ERP | X++ | C# | Dart)"
+    },
+    {
+        projectDate: "November 2023 - February 2024",
+        projectName: "AXFinMobile | PT. Gandum Mas Kencana",
+        projectDescription: "Journal Payment integration to AX 2012 R2 using ASP.NET Web API and Flutter (Dynamics AX 2012 R2 | ERP | X++ | C# | Dart)"
+    },
+    {
         projectDate: "June 2023 - July 2023",
         projectName: "Dynamics AX 2012 R3 | PT. Mega Akses Persada (Fiberstar)",
         projectDescription: "Data forensics (Dynamics AX 2012 R3 | ERP | X++)"

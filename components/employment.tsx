@@ -25,12 +25,6 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
     }
 
     const histories : IHistory[]  = [
-        // {
-        //     name: "PT. Multi Sarisentosa",
-        //     date: "January 2013",
-        //     position: "Administration Staff",
-        //     jobDescription: "Handles paperwork for project tender and ensure the required documents are fulfiled"
-        // },
         {
             name: "PT. Visionet Data Internasional",
             date: "January 2018 - February 2019",
@@ -44,6 +38,13 @@ const Employment: React.FC<{className?: string}> = ({className}) => {
             position: "Software Developer",
             jobDescription: "Microsoft Dynamics Ecosystem Developer, responsible for Developing a solution based from business requirements that depends on multiple Microsoft Dynamics Products, including PowerApps, Power Automate, Dynamics Finance and Operations, Dynamics Business Central, Azure DevOps, Microsoft LCS",
             image: "intikom.png"
+        },
+        {
+            name: "PT. Gandum Mas Kencana",
+            date: "July 2023 - Present",
+            position: "Software Developer",
+            jobDescription: "Microsoft Dynamics AX 2012 R3 Developer, responsible for creating and maintaining custom code based from the business requirements",
+            image: "gandum.png"
         }
     ]
 
